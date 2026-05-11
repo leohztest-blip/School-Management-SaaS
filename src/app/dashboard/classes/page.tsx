@@ -8,41 +8,41 @@ import { Users, BookOpen, Plus, Edit, Trash2, Eye, Clock3, School } from 'lucide
 const mockClasses = [
   {
     id: '1',
-    className: 'Class 1',
+    className: 'Class 1-A',
     section: 'A',
     teacher: 'Ayesha Rahman',
     studentCount: 32,
-    subjects: ['English', 'Mathematics', 'Science', 'Art'],
+    subjects: ['Mathematics', 'English', 'Science'],
     room: 'Room 201',
     schedule: 'Sun-Thu, 8:00 AM - 1:30 PM',
   },
   {
     id: '2',
-    className: 'Class 2',
+    className: 'Class 2-B',
     section: 'B',
     teacher: 'John Smith',
     studentCount: 30,
-    subjects: ['English', 'Mathematics', 'Science', 'ICT'],
+    subjects: ['Mathematics', 'English', 'Science', 'Bangla'],
     room: 'Room 204',
     schedule: 'Sun-Thu, 8:00 AM - 1:30 PM',
   },
   {
     id: '3',
-    className: 'Class 3',
-    section: 'A',
-    teacher: 'Farhana Islam',
+    className: 'Class 3-C',
+    section: 'C',
+    teacher: 'Fatima Akter',
     studentCount: 34,
-    subjects: ['English', 'Mathematics', 'Social Studies', 'Science'],
+    subjects: ['Mathematics', 'English', 'Social Studies', 'Science'],
     room: 'Room 301',
     schedule: 'Sun-Thu, 8:30 AM - 2:00 PM',
   },
   {
     id: '4',
-    className: 'Class 4',
-    section: 'B',
-    teacher: 'Mehedi Hasan',
+    className: 'Class 4-D',
+    section: 'D',
+    teacher: 'Karim Hasan',
     studentCount: 29,
-    subjects: ['English', 'Mathematics', 'Bangla', 'General Science'],
+    subjects: ['Mathematics', 'English', 'Science', 'Bangla'],
     room: 'Room 305',
     schedule: 'Sun-Thu, 8:30 AM - 2:00 PM',
   },
@@ -58,7 +58,7 @@ export default function ClassesPage() {
         actions={
           <div className="flex gap-2">
             <Button variant="outline" size="sm" leftIcon={<BookOpen className="h-4 w-4" />}>
-              Manage Subjects
+              Export
             </Button>
             <Button size="sm" leftIcon={<Plus className="h-4 w-4" />}>
               Add Class
@@ -76,7 +76,7 @@ export default function ClassesPage() {
                   <School className="h-5 w-5 text-blue-600" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-gray-900">{cls.className} - Section {cls.section}</h3>
+                  <h3 className="font-bold text-gray-900">{cls.className}</h3>
                   <p className="text-xs text-gray-500">Class Teacher: {cls.teacher}</p>
                 </div>
               </div>
