@@ -48,7 +48,7 @@ const SCHOOL_NAV: NavSection[] = [
     ],
   },
   {
-    title: 'ADMIN',
+    title: 'ADMINISTRATION',
     items: [
       { label: 'Library',         href: '/dashboard/library',      icon: Library,        permission: 'students:read' },
       { label: 'Transport',       href: '/dashboard/transport',    icon: Bus,            permission: 'students:read' },
