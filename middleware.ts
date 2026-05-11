@@ -5,10 +5,7 @@ const PUBLIC_ROUTES = ['/', '/login', '/register', '/forgot-password', '/reset-p
 
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
-
-  if (PUBLIC_ROUTES.some((route) => pathname === route || pathname.startsWith(`${route}/`))) {
-    return NextResponse.next({ request });
-  }
+  const isPublicRoute = PUBLIC_ROUTES.some((route) => pathname === route || pathname.startsWith(`${route}/`));
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -34,6 +31,13 @@ export async function middleware(request: NextRequest) {
   const {
     data: { user },
   } = await supabase.auth.getUser();
+
+  if (isPublicRoute) {
+    if (user && (pathname === '/login' || pathname === '/register')) {
+      return NextResponse.redirect(new URL('/dashboard', request.url));
+    }
+    return response;
+  }
 
   if ((pathname.startsWith('/dashboard') || pathname.startsWith('/admin')) && !user) {
     const loginUrl = new URL('/login', request.url);
