@@ -18,7 +18,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
           sidebarCollapsed && 'lg:ml-[68px]'
         )}
       >
-        <div className="p-6">{children}</div>
+        <div className="mx-auto w-full max-w-[1440px] p-4 sm:p-6 lg:p-8">{children}</div>
       </main>
     </div>
   );
