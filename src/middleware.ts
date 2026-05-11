@@ -1,7 +1,7 @@
 import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
 
-const PUBLIC_ROUTES = ['/login', '/register', '/forgot-password', '/reset-password'];
+const PUBLIC_ROUTES = ['/', '/login', '/register', '/forgot-password', '/reset-password'];
 
 export async function middleware(request: NextRequest) {
   let response = NextResponse.next({ request });
@@ -55,11 +55,6 @@ export async function middleware(request: NextRequest) {
         return NextResponse.redirect(new URL('/dashboard', request.url));
       }
     }
-  }
-
-  // Redirect root to login
-  if (pathname === '/') {
-    return NextResponse.redirect(new URL('/login', request.url));
   }
 
   return response;

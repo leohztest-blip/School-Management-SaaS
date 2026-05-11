@@ -64,19 +64,19 @@ const SUPER_ADMIN_NAV: NavSection[] = [
   {
     title: 'PLATFORM',
     items: [
-      { label: 'Dashboard',       href: '/admin',                  icon: LayoutDashboard },
+      { label: 'Dashboard',       href: '/admin/schools',          icon: LayoutDashboard },
       { label: 'Schools',         href: '/admin/schools',          icon: Building2 },
       { label: 'Analytics',       href: '/admin/analytics',        icon: BarChart2 },
-      { label: 'Subscriptions',   href: '/admin/billing',          icon: CreditCard },
-      { label: 'Support',         href: '/admin/support',          icon: Shield },
-      { label: 'Settings',        href: '/admin/settings',         icon: Settings },
+      { label: 'Subscriptions',   href: '/dashboard/payments',     icon: CreditCard },
+      { label: 'Support',         href: '/dashboard/notifications', icon: Shield },
+      { label: 'Settings',        href: '/dashboard/settings',     icon: Settings },
     ],
   },
 ];
 
 export function Sidebar() {
   const pathname = usePathname();
-  const { user, school } = useAuthStore();
+  const { user, school, logout } = useAuthStore();
   const { sidebarOpen, sidebarCollapsed, setSidebarOpen, toggleSidebarCollapsed } = useUIStore();
 
   const isSuperAdmin = user?.role === 'super_admin';
@@ -146,7 +146,11 @@ export function Sidebar() {
                   <p className="text-white text-xs font-semibold truncate">{user?.profile?.full_name || 'Admin'}</p>
                   <p className="text-slate-400 text-[11px] capitalize truncate">{user?.role?.replace(/_/g, ' ')}</p>
                 </div>
-                <button className="text-slate-500 hover:text-white transition-colors">
+                <button
+                  onClick={logout}
+                  className="text-slate-500 hover:text-white transition-colors"
+                  aria-label="Logout"
+                >
                   <LogOut className="h-3.5 w-3.5" />
                 </button>
               </>
