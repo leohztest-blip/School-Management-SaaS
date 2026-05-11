@@ -40,6 +40,9 @@
     "node_modules",
     "edge-functions/**",
     "supabase/functions/**",
-    "docs/**"
+    "docs/**",
+    "mnt/**",
+    "page.tsx",
+    "sidebar-v3.tsx"
   ]
 }
