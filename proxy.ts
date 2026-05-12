@@ -2,6 +2,18 @@ import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
 
 const PUBLIC_ROUTES = ['/', '/login', '/signup', '/register', '/forgot-password', '/reset-password'];
+const AUTH_TIMEOUT_MS = 1800;
+
+async function withTimeout<T>(promise: PromiseLike<T>, timeoutMs: number): Promise<T | null> {
+  try {
+    return await Promise.race<T | null>([
+      Promise.resolve(promise),
+      new Promise<null>((resolve) => setTimeout(() => resolve(null), timeoutMs)),
+    ]);
+  } catch {
+    return null;
+  }
+}
 
 export async function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
@@ -10,16 +22,12 @@ export async function proxy(request: NextRequest) {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-  if (!supabaseUrl || !supabaseAnonKey) {
-    return NextResponse.next({ request });
-  }
+  if (!supabaseUrl || !supabaseAnonKey) return NextResponse.next({ request });
 
   let response = NextResponse.next({ request });
   const supabase = createServerClient(supabaseUrl, supabaseAnonKey, {
     cookies: {
-      getAll() {
-        return request.cookies.getAll();
-      },
+      getAll: () => request.cookies.getAll(),
       setAll(cookiesToSet) {
         cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
         response = NextResponse.next({ request });
@@ -28,9 +36,8 @@ export async function proxy(request: NextRequest) {
     },
   });
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const authResult = await withTimeout(supabase.auth.getUser(), AUTH_TIMEOUT_MS);
+  const user = authResult?.data?.user ?? null;
 
   if (isPublicRoute) {
     if (user && (pathname === '/login' || pathname === '/signup' || pathname === '/register')) {
@@ -46,9 +53,12 @@ export async function proxy(request: NextRequest) {
   }
 
   if (pathname.startsWith('/admin') && user) {
-    const { data: profile } = await supabase.from('users').select('role').eq('id', user.id).single();
+    const profileResult = await withTimeout(
+      supabase.from('users').select('role').eq('id', user.id).single(),
+      AUTH_TIMEOUT_MS
+    );
 
-    if (profile?.role !== 'super_admin') {
+    if (!profileResult || profileResult.data?.role !== 'super_admin') {
       return NextResponse.redirect(new URL('/dashboard', request.url));
     }
   }
