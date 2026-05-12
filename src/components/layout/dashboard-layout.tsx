@@ -8,17 +8,11 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
   const { sidebarCollapsed } = useUIStore();
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-slate-100">
       <Sidebar />
       <Navbar />
-      <main
-        className={cn(
-          'pt-16 min-h-screen transition-all duration-300',
-          'ml-0 lg:ml-64',
-          sidebarCollapsed && 'lg:ml-[68px]'
-        )}
-      >
-        <div className="mx-auto w-full max-w-[1440px] p-4 sm:p-6 lg:p-8">{children}</div>
+      <main className={cn('min-h-screen pt-16 transition-all duration-300', sidebarCollapsed ? 'ml-0 lg:ml-[74px]' : 'ml-0 lg:ml-[272px]')}>
+        <div className="mx-auto w-full max-w-[1480px] p-4 sm:p-6 lg:p-8">{children}</div>
       </main>
     </div>
   );
