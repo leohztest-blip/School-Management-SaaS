@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { ShieldCheck, BarChart3, Users, GraduationCap, Wallet, ClipboardCheck, UserCog, Menu } from 'lucide-react';
-
 import type { LucideIcon } from 'lucide-react';
 
 const features: Array<{ title: string; desc: string; icon: LucideIcon }> = [
