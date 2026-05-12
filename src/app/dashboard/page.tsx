@@ -59,7 +59,7 @@ export default function DashboardPage() {
         {quickStats.map(s => {
           const Icon = s.icon;
           return (
-            <div key={s.label} className={`card border-l-4 ${s.bl} p-4 hover:shadow-elevated transition-shadow`}>
+            <div key={s.label} className={`rounded-2xl border ${s.bl} border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg`}>
               <div className="flex items-start justify-between mb-3">
                 <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-widest leading-tight">{s.label}</p>
                 <div className={`h-8 w-8 rounded-lg ${s.bg} flex items-center justify-center shrink-0`}>
@@ -99,7 +99,7 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <div className="card">
+        <div className="rounded-2xl border border-slate-200 bg-white shadow-sm">
           <div className="card-header">
             <div><h3 className="section-title">Fee Collection</h3><p className="section-subtitle">This week</p></div>
           </div>
@@ -125,7 +125,7 @@ export default function DashboardPage() {
 
       {/* Bottom: payments + activity */}
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
-        <div className="lg:col-span-3 card overflow-hidden">
+        <div className="lg:col-span-3 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
           <div className="card-header">
             <h3 className="section-title">Recent Payments</h3>
             <a href="/dashboard/payments" className="text-xs text-blue-600 font-medium flex items-center gap-1">View all<ArrowRight className="h-3 w-3"/></a>
@@ -155,7 +155,7 @@ export default function DashboardPage() {
         </div>
 
         <div className="lg:col-span-2 space-y-4">
-          <div className="card overflow-hidden">
+          <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
             <div className="card-header"><h3 className="section-title">Activity Feed</h3></div>
             <div className="divide-y divide-gray-50">
               {activities.map((a,i) => (

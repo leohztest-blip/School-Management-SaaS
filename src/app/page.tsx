@@ -1,66 +1,26 @@
 import Link from 'next/link';
-import { ArrowRight, CheckCircle2, ShieldCheck, School, LineChart } from 'lucide-react';
+import { ShieldCheck, BarChart3, Users, GraduationCap, Wallet, ClipboardCheck, UserCog, Menu } from 'lucide-react';
 
-const highlights = [
-  'Admissions, student records, and class workflows in one place',
-  'Attendance, exams, and fee management with role-based access',
-  'Production-ready Next.js + Supabase deployment for modern schools',
+const features = [
+  ['Student Information System', 'Manage admissions, profiles, classes, and academic records in one place.', GraduationCap],
+  ['Attendance Management', 'Track daily attendance, late arrivals, and absences with class-wise views.', ClipboardCheck],
+  ['Fees & Invoicing', 'Automate fee structures, invoices, dues, and payment collection workflows.', Wallet],
+  ['Exams & Results', 'Publish exam schedules, marks, and result analytics for faster reporting.', BarChart3],
+  ['Staff & Roles', 'Control permissions for principals, teachers, accountants, and office staff.', UserCog],
+  ['Reports & Analytics', 'Get realtime metrics across academics, finance, attendance, and operations.', Users],
 ];
 
 export default function HomePage() {
-  return (
-    <main className="min-h-screen bg-slate-950 text-slate-100">
-      <section className="mx-auto flex max-w-6xl flex-col px-6 py-16 lg:py-24">
-        <div className="inline-flex w-fit items-center gap-2 rounded-full border border-blue-400/30 bg-blue-500/10 px-3 py-1 text-xs font-semibold text-blue-300">
-          <School className="h-3.5 w-3.5" />
-          Shiksha ERP • School Management SaaS
-        </div>
-
-        <h1 className="mt-6 max-w-4xl text-4xl font-bold tracking-tight text-white sm:text-5xl">
-          Run your school operations with a unified, role-based ERP platform.
-        </h1>
-        <p className="mt-4 max-w-3xl text-base text-slate-300 sm:text-lg">
-          Manage students, staff, classes, fees, attendance, exams, notices, and reports with a production-focused workflow built for school admins and educators.
-        </p>
-
-        <div className="mt-8 flex flex-wrap gap-3">
-          <Link
-            href="/login"
-            className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-500"
-          >
-            Sign in
-            <ArrowRight className="h-4 w-4" />
-          </Link>
-          <Link
-            href="/register"
-            className="inline-flex items-center gap-2 rounded-lg border border-slate-700 px-5 py-2.5 text-sm font-semibold text-slate-200 transition hover:border-slate-500"
-          >
-            Create account
-          </Link>
-        </div>
-
-        <div className="mt-12 grid gap-4 sm:grid-cols-3">
-          {highlights.map((text) => (
-            <div key={text} className="rounded-xl border border-slate-800 bg-slate-900/60 p-4">
-              <CheckCircle2 className="mb-2 h-5 w-5 text-emerald-400" />
-              <p className="text-sm text-slate-200">{text}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-12 grid gap-4 sm:grid-cols-2">
-          <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
-            <ShieldCheck className="mb-3 h-5 w-5 text-blue-300" />
-            <h2 className="text-lg font-semibold text-white">Role-based and secure</h2>
-            <p className="mt-1 text-sm text-slate-300">Supports Super Admin, School Admin, Teacher, Student, Parent, and finance roles with scoped navigation and access patterns.</p>
-          </div>
-          <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
-            <LineChart className="mb-3 h-5 w-5 text-violet-300" />
-            <h2 className="text-lg font-semibold text-white">Analytics-ready operations</h2>
-            <p className="mt-1 text-sm text-slate-300">Track attendance, fees, academics, and operations from centralized dashboards and reports.</p>
-          </div>
-        </div>
-      </section>
-    </main>
-  );
+  return <main className="min-h-screen bg-slate-950 text-slate-100">
+    <div className="absolute inset-0 -z-0 bg-[radial-gradient(circle_at_top,_rgba(59,130,246,.18),_transparent_42%)]" />
+    <header className="sticky top-0 z-20 border-b border-white/10 bg-slate-950/80 backdrop-blur"><div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8"><p className="text-sm font-semibold">Shiksha ERP</p><nav className="hidden gap-6 text-sm text-slate-300 md:flex"><a href="#features">Features</a><a href="#modules">Modules</a><a href="#security">Security</a></nav><div className="hidden gap-2 md:flex"><Link href="/login" className="rounded-lg border border-white/20 px-4 py-2 text-sm">Sign in</Link><Link href="/register" className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold">Create account</Link></div><button className="md:hidden"><Menu className="h-5 w-5" /></button></div></header>
+    <section className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:px-8 lg:py-24">
+      <div><p className="inline-flex rounded-full border border-blue-400/30 bg-blue-500/10 px-3 py-1 text-xs text-blue-300">Modern School ERP Platform</p><h1 className="mt-5 text-4xl font-bold leading-tight text-white sm:text-5xl">Run your entire school from one modern ERP platform.</h1><p className="mt-4 text-slate-300">Manage students, attendance, fees, exams, staff, notices, and reports from a secure, role-based dashboard designed for school operations.</p><div className="mt-7 flex flex-wrap gap-3"><Link href="/login" className="rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-semibold">Sign in</Link><Link href="/register" className="rounded-xl border border-white/20 px-5 py-2.5 text-sm">Create account</Link></div><div className="mt-7 flex flex-wrap gap-2 text-xs"><span className="rounded-full border border-white/15 bg-white/[0.03] px-3 py-1">Role-based access</span><span className="rounded-full border border-white/15 bg-white/[0.03] px-3 py-1">Realtime dashboards</span><span className="rounded-full border border-white/15 bg-white/[0.03] px-3 py-1">Secure cloud deployment</span></div></div>
+      <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-5 shadow-2xl"><div className="grid gap-3 sm:grid-cols-2"><div className="rounded-2xl bg-slate-900 p-4"><p className="text-xs text-slate-400">Attendance Today</p><p className="mt-1 text-2xl font-bold text-emerald-300">94.5%</p></div><div className="rounded-2xl bg-slate-900 p-4"><p className="text-xs text-slate-400">Collected Fees</p><p className="mt-1 text-2xl font-bold text-blue-300">₹8.5L</p></div><div className="rounded-2xl bg-slate-900 p-4 sm:col-span-2"><p className="text-xs text-slate-400">Operations</p><div className="mt-3 h-2 rounded-full bg-slate-800"><div className="h-2 w-2/3 rounded-full bg-gradient-to-r from-cyan-400 to-indigo-500" /></div></div></div></div>
+    </section>
+    <section id="features" className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8"><h2 className="text-2xl font-semibold text-white">Everything your school needs</h2><div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">{features.map(([title,desc,Icon]) => <div key={title as string} className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 transition hover:-translate-y-0.5 hover:border-blue-400/40"><Icon className="h-5 w-5 text-blue-300" /><h3 className="mt-3 font-semibold text-white">{title}</h3><p className="mt-2 text-sm text-slate-300">{desc}</p></div>)}</div></section>
+    <section id="modules" className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8"><h2 className="text-2xl font-semibold">Role-based workflows</h2><p className="mt-2 text-slate-300">Super Admin, School Admin, Teacher, Student, Parent, and Accountant each get scoped modules and actions.</p></section>
+    <section id="security" className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8"><div className="rounded-3xl border border-white/10 bg-white/[0.03] p-8"><ShieldCheck className="h-6 w-6 text-emerald-300" /><h2 className="mt-4 text-2xl font-semibold">Security and governance by design</h2><p className="mt-2 text-slate-300">Role-based access, scoped navigation, and audit-friendly workflows for daily operations.</p><div className="mt-6 flex gap-3"><Link href="/login" className="rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-semibold">Start now</Link><Link href="/register" className="rounded-xl border border-white/20 px-5 py-2.5 text-sm">Create account</Link></div></div></section>
+    <footer className="border-t border-white/10"><div className="mx-auto max-w-7xl px-4 py-8 text-sm text-slate-400 sm:px-6 lg:px-8">© {new Date().getFullYear()} Shiksha ERP · Modern school management SaaS.</div></footer>
+  </main>;
 }
